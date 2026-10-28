@@ -1,0 +1,197 @@
+---
+import Base from '../layouts/Base.astro';
+import WaIcon from '../components/WaIcon.astro';
+import { contact, rooms, wa } from '../data/site.js';
+
+const materials = [
+  { name: 'Teak', line: 'Headboards, tables, desks and doors.', img: '/img/thumb/lounge-round-table.jpg' },
+  { name: 'Marble-look floors', line: 'Cool underfoot, veined in gold.', img: '/img/thumb/suite-room-day.jpg' },
+  { name: 'Cove light', line: 'A slatted wood ceiling framed in warm LED.', img: '/img/thumb/suite-bedroom-evening.jpg' },
+  { name: 'Zebra blinds', line: 'Soft daylight on every window.', img: '/img/thumb/deluxe-room-panelled.jpg' },
+  { name: 'White linen', line: 'Fresh sheets and a comforter on every bed.', img: '/img/thumb/bed-headboard.jpg' },
+];
+
+const film = [
+  { src: '/img/suite-sitting-room.jpg', w: 1000, h: 1500, alt: 'Suite sitting room with a leather window seat, bolsters and a teak coffee table', cap: 'The suite sitting room' },
+  { src: '/img/flat-kitchen-dining.jpg', w: 1600, h: 901, alt: 'Flat kitchen with a black granite counter beside a teak dining table', cap: 'Kitchen and dining in the 2BHK' },
+  { src: '/img/flat-kitchenette.jpg', w: 1000, h: 1500, alt: 'Kitchenette with a granite counter under a slatted wood ceiling', cap: 'Kitchenette under the slatted ceiling' },
+  { src: '/img/deluxe-room-leaf.jpg', w: 1600, h: 900, alt: 'Deluxe room with a leaf-print bedspread and a lit dressing unit', cap: 'Deluxe room with its lit dressing desk' },
+];
+---
+<Base
+  title="Kayal Breeze Homestay | Rooms & flats in Varapuzha, Kochi"
+  description="Kayal Breeze is a homestay near Varapuzha Post Office, Kochi, Kerala, with suite and deluxe rooms and 2BHK/3BHK flats, AC and non-AC, for daily or monthly stays. Enquire on WhatsApp."
+  schema
+>
+  <section class="ph hh" aria-labelledby="page-title">
+    <div class="ph__media">
+      <div class="ph__pane shutter" data-now>
+        <div class="ph__drift">
+          <img src="/img/hero-garden-dusk.jpg" width="1672" height="941" alt="The garden at dusk: a stone Buddha lit gold before the water wall and its pool, a lit timber walk, and the backwater beyond the palms" fetchpriority="high">
+        </div>
+      </div>
+    </div>
+    <div class="hh__body">
+      <p class="hh__kicker">A peaceful stay by the backwaters</p>
+      <h1 class="hh__name" id="page-title">Kayal Breeze</h1>
+      <p class="hh__lead">Rooms and flats beside the Varapuzha backwaters, Kochi. <br>By the night or by the month.</p>
+      <div class="hh__actions">
+        <a class="btn" href={wa()} target="_blank" rel="noopener"><WaIcon /> Enquire on WhatsApp</a>
+        <a class="btn btn--outline" href="/rooms.html">See the rooms <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <ul class="hh__facts">
+        <li>
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 15 16 5l12 10M7 13v14h18V13M13 27v-8h6v8"/></svg>
+          <strong>4</strong><span>Ways to stay,<br>suite to 3BHK</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 27h26M8 27c1-4 4-6 8-6s7 2 8 6M15 21c0-5 1-10 3-13M18 8c-3-2-7-2-9 0M18 8c3-2 7-1 9 2M18 8c-1 3-4 5-7 5M18 8c2 2 3 5 2 8"/></svg>
+          <strong>5 km</strong><span>To the Kadamakudy<br>islands</span>
+        </li>
+        <li>
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M27 5c-2-1-4 0-6 2l-4 4-11-3-2 2 9 5-4 5-4-1-1 1 4 3 3 4 1-1-1-4 5-4 5 9 2-2-3-11 4-4c2-2 3-4 2-6z"/></svg>
+          <strong>25 km</strong><span>To Cochin Airport</span>
+        </li>
+      </ul>
+    </div>
+    <a class="hh__scroll" href="#stays-title">
+      <svg viewBox="0 0 24 40" aria-hidden="true"><path d="M12 1v9"/><rect x="6" y="14" width="12" height="20" rx="6"/><path class="hh__wheel" d="M12 20v4"/></svg>
+      <span>Scroll to explore</span>
+    </a>
+  </section>
+
+  <section class="stays" aria-labelledby="stays-title">
+    <div class="split-head" data-reveal>
+      <h2 id="stays-title">Four ways to stay</h2>
+      <p>Two kinds of room and two sizes of flat, every one in AC or non-AC, by the night or by the month.</p>
+    </div>
+    <div class="mosaic">
+      {rooms.map((r) => (
+        <a class="tile" href={`/rooms.html#${r.id}`}>
+          <img src={r.cover.src} width={r.cover.w} height={r.cover.h} loading="lazy" alt={r.cover.alt} />
+          <div class="tile__text">
+            <h3>{r.name}</h3><p>{r.short}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="included">
+      <div class="included__list">
+        <h3>In every room</h3>
+        <ul><li>Air-conditioning or ceiling fan</li><li>Wall-mounted TV</li><li>Wardrobe and dressing mirror</li><li>White linen and comforter</li><li>Kitchens in the flats</li></ul>
+      </div>
+      <div class="included__rate">
+        <h3>Rates on request</h3>
+        <p>Tell us your dates and we reply with the rate. <a class="link link--on" href={wa()} target="_blank" rel="noopener">WhatsApp {contact.whatsapp}</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="kayal on-green" aria-labelledby="kayal-title">
+    <div class="grid">
+      <div class="kayal__text" data-reveal>
+        <h2 class="head" id="kayal-title">Kayal means backwater</h2>
+        <p class="statement" style="margin-top:28px">A three-storey house near Varapuzha, where the Periyar meets the islands.</p>
+        <p>Inside: teak, marble floors veined in gold, white linen and cool rooms. Outside: a garden path that ends at a water wall and a lit Buddha.</p>
+        <a class="link link--on" href="/about.html">About the house</a>
+      </div>
+      <div class="kayal__photos" data-reveal>
+        <img src="/img/thumb/lounge-round-table.jpg" width="900" height="678" loading="lazy" alt="A round teak table with tucked-in stools and a vase of white gladioli beside a leather bench seat">
+        <img src="/img/thumb/facade-night.jpg" width="896" height="1071" loading="lazy" alt="Kayal Breeze at night, with downlights glowing under every eave">
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap" aria-labelledby="mat-title">
+    <div class="grid materials">
+      <figure class="materials__photo drift">
+        <img src="/img/suite-bedroom-evening.jpg" width="1000" height="1500" loading="lazy" alt="Suite bedroom in the evening: a white bed, a slatted teak ceiling panel framed by cove light, and a marble-look floor">
+      </figure>
+      <div class="materials__text" data-reveal>
+        <h2 class="head" id="mat-title">Teak and marble, lit softly</h2>
+        <p>Every room is finished the same way, from the suite to the 3BHK.</p>
+        <ul class="mat-list">
+          {materials.map((m) => (
+            <li><img src={m.img} width="84" height="84" loading="lazy" alt="" /><div><strong>{m.name}</strong><span>{m.line}</span></div></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section wrap tone" aria-labelledby="dusk-title">
+    <div class="grid dusk__inner">
+      <div class="dusk__text" data-reveal>
+        <h2 class="head" id="dusk-title">The same house after dark</h2>
+        <p>By day it is white and grey among the coconut palms. At dusk the downlights under every eave come on, and the three floors glow over the garden. Drag across the photograph to see both.</p>
+        <ul class="look">
+          <li>A white three-storey house with grey bands</li>
+          <li>Black balcony railings on every floor</li>
+          <li>A glass canopy over the front door</li>
+          <li>Next to Varapuzha Post Office</li>
+        </ul>
+        <a class="link link--on" href="/location.html">How to find us</a>
+      </div>
+      <div class="dusk__figure">
+        <div class="dusk__view" style="--split:50%">
+          <img src="/img/facade-day.jpg" width="896" height="1108" loading="lazy" alt="Kayal Breeze by day: a white three-storey house with grey bands and black balcony railings under a blue sky">
+          <img class="dusk__night" src="/img/facade-night.jpg" width="896" height="1071" loading="lazy" alt="Kayal Breeze at night, with downlights glowing under every eave">
+          <span class="dusk__handle" aria-hidden="true"></span>
+        </div>
+        <label class="dusk__control"><span>Day</span><input id="dusk-range" type="range" min="0" max="100" value="50" aria-label="Day to night"><span>Night</span></label>
+      </div>
+    </div>
+  </section>
+
+  <section class="inside" aria-labelledby="inside-title">
+    <div class="split-head" data-reveal>
+      <h2 id="inside-title">Inside the house</h2>
+      <p>Bedrooms, the suite's sitting room, the flats' kitchens and the garden. <a class="link link--on" href="/gallery.html">All 17 photographs</a></p>
+    </div>
+    <div class="peek wrap" data-reveal>
+      {film.map((f) => (
+        <figure><img src={f.src} width={f.w} height={f.h} loading="lazy" alt={f.alt} /><figcaption>{f.cap}</figcaption></figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="where wrap on-green" aria-labelledby="where-title">
+    <div class="grid">
+      <div class="where__head" data-reveal>
+        <h2 class="head" id="where-title">Where you are</h2>
+        <p class="lead">Varapuzha is at the northern edge of Kochi, where the river splits around the Kadamakudy islands. The city is close; the water is closer.</p>
+      </div>
+      <figure class="where__photo drift">
+        <img src="/img/garden-path.jpg" width="1202" height="678" loading="lazy" alt="Garden at night: white stepping stones across dark gravel lead to a water wall and a lit Buddha, with bamboo either side">
+        <p>Through the gate, a gravel garden with stepping stones, bamboo and a water wall that runs through the evening.</p>
+      </figure>
+      <div class="where__side">
+        <div class="where__tile"><img src="/img/logo.jpg" width="720" height="662" loading="lazy" alt="Kayal Breeze logo: a houseboat and palms on the backwater at sunset, with the words Where the breeze meets serenity"></div>
+        <dl class="facts">
+          <div><dt>Kadamakudy islands</dt><dd>5 km</dd></div>
+          <div><dt>Lulu Mall, Edappally</dt><dd>10 km</dd></div>
+          <div><dt>Ernakulam Junction</dt><dd>17 km</dd></div>
+          <div><dt>Cochin Airport</dt><dd>25 km</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit" aria-labelledby="visit-title">
+    <div class="visit__photo">
+      <img src="/img/deluxe-room-panelled.jpg" width="1600" height="900" loading="lazy" alt="Deluxe room with a walnut bed, white linen, zebra blinds and white flowers on the bedside tables">
+    </div>
+    <div class="visit__inner">
+      <div class="visit__card">
+        <h2 id="visit-title">Stay with us</h2>
+        <address>SK Homes, near Varapuzha Post Office,<br>Varapuzha P.O., Kochi, Kerala 683517</address>
+        <dl class="rows">
+          <div><dt>Phone</dt><dd><a class="link" href={contact.phoneHref}>{contact.phone}</a></dd></div>
+          <div><dt>WhatsApp</dt><dd><a class="link" href={wa()}>{contact.whatsapp}</a></dd></div>
+          <div><dt>Stays</dt><dd>Daily · Monthly</dd></div>
+        </dl>
+        <a class="btn" href="/contact.html">Send a room enquiry</a>
+      </div>
+    </div>
+  </section>
+</Base>

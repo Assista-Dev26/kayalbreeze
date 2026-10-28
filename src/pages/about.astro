@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+---
+<Base
+  title="About Kayal Breeze Homestay | Varapuzha, Kochi"
+  description="Kayal Breeze is a three-storey homestay by SK Group near Varapuzha Post Office, Kochi, with suite and deluxe rooms and 2BHK/3BHK flats, and a garden with a water wall."
+  image="/img/garden-path.jpg"
+>
+  <PageHero
+    title="A quiet house by the kayal"
+    lead="Kayal Breeze is a homestay of rooms and flats, built and run by SK Group near Varapuzha Post Office, on the northern edge of Kochi."
+    images={[{ src: '/img/garden-path.jpg', w: 1202, h: 678, alt: 'The garden at night: stepping stones over dark gravel lead to a water wall and a lit Buddha, between bamboo and potted plants' }]}
+    facts={[
+      { value: 'Three floors', label: 'White and grey, under deep eaves' },
+      { value: '4 ways to stay', label: 'Suite, deluxe, 2BHK, 3BHK' },
+      { value: 'SK Group', label: 'Built and run by' },
+    ]}
+  >
+    <a class="btn" href="/rooms.html">See the rooms</a>
+  </PageHero>
+
+  <section class="section wrap" aria-labelledby="story-title">
+    <div class="grid story">
+      <div class="story__lead" data-reveal>
+        <h2 class="head" id="story-title">The house</h2>
+        <p class="statement">Three floors, white and grey, under deep eaves.</p>
+        <img src="/img/thumb/facade-day.jpg" width="896" height="1108" loading="lazy" alt="Kayal Breeze by day: a white three-storey house with black balcony railings among coconut palms">
+      </div>
+      <div class="story__body" data-reveal>
+        <p>Kayal means backwater in Malayalam, and Varapuzha is where the Periyar opens into them: small islands, ferries and fishing nets a few minutes from the city's highways.</p>
+        <p>The house was built for stays of a night or of several months. There are suite rooms with their own sitting room, deluxe rooms in AC and non-AC, and 2BHK and 3BHK flats with a full kitchen and a dining table.</p>
+        <p>Every room is finished in the same materials: teak furniture, marble-look floors veined in gold, zebra blinds, white linen and a slatted wood ceiling framed in cove light.</p>
+        <p>At the side of the house a gravel garden runs to a water wall with a lit Buddha. It is the quietest place on the plot, and the best one after dark.</p>
+        <img src="/img/lounge-round-table.jpg" width="1445" height="1088" loading="lazy" alt="A round teak table with tucked-in stools and white gladioli beside a leather bench">
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap tone section" aria-labelledby="garden-title">
+    <div class="split-head" data-reveal>
+      <h2 id="garden-title">The garden</h2>
+      <p>Stepping stones, bamboo and a water wall that runs through the evening, with the Buddha lit gold at its centre.</p>
+    </div>
+    <div class="grid pair">
+      <figure class="pair__big drift">
+        <img src="/img/buddha-water-wall.jpg" width="1600" height="900" loading="lazy" alt="A stone Buddha lit gold before the water wall, with broad leaves in the foreground">
+      </figure>
+      <figure class="pair__small">
+        <img src="/img/thumb/suite-sitting-room.jpg" width="900" height="1350" loading="lazy" alt="Suite sitting room with a leather window seat and a teak coffee table">
+        <figcaption>The suite sitting room, looking out to the garden side.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="facts-band on-green" aria-labelledby="facts-title">
+    <h2 id="facts-title" data-reveal>Kayal Breeze at a glance</h2>
+    <dl data-reveal>
+      <div><dt>Floors</dt><dd>Three</dd></div>
+      <div><dt>Ways to stay</dt><dd>Suite, deluxe, 2BHK, 3BHK</dd></div>
+      <div><dt>Terms</dt><dd>Daily or monthly</dd></div>
+      <div><dt>Rooms</dt><dd>AC and non-AC</dd></div>
+    </dl>
+  </section>
+
+  <section class="cta" aria-labelledby="next-title">
+    <img src="/img/suite-bedroom.jpg" width="1500" height="1000" loading="lazy" alt="Suite bedroom with a white bed, a teak headboard and a lit dressing mirror">
+    <div class="cta__body" data-reveal>
+      <h2 id="next-title">See the rooms</h2>
+      <p>Photographs, fittings and what each room and flat includes, from the suite to the 3BHK.</p>
+      <div class="ph__actions">
+        <a class="btn" href="/rooms.html">Rooms &amp; facilities</a>
+        <a class="btn btn--light" href="/contact.html">Send an enquiry</a>
+      </div>
+    </div>
+  </section>
+</Base>

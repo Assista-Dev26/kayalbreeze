@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { photos } from '../data/site.js';
+---
+<Base
+  title="Gallery | Kayal Breeze Homestay, Varapuzha"
+  description="Photographs of Kayal Breeze in Varapuzha, Kochi: suite and deluxe rooms, the flats' kitchens and dining, and the house and garden by day and night."
+  image="/img/suite-bedroom-evening.jpg"
+>
+  <PageHero
+    size="short"
+    title="Gallery"
+    lead="17 photographs of the rooms, the flats, and the house and garden by day and night."
+    images={[
+      { src: '/img/suite-bedroom-evening.jpg', w: 1000, h: 1500, alt: 'Suite bedroom in the evening under a cove-lit teak ceiling' },
+      { src: '/img/thumb/facade-night.jpg', w: 896, h: 1071, alt: 'Kayal Breeze at night, downlights glowing under every eave', pos: 'top' },
+      { src: '/img/flat-kitchenette.jpg', w: 1000, h: 1500, alt: 'Kitchenette under a slatted wood ceiling' },
+    ]}
+    facts={[
+      { value: '9', label: 'Rooms' },
+      { value: '4', label: 'Flats and kitchens' },
+      { value: '4', label: 'House and garden' },
+    ]}
+  />
+
+  <div class="filters" role="group" aria-labelledby="filter-title">
+    <h2 id="filter-title">Show</h2>
+    <button type="button" data-filter="all" aria-pressed="true">All</button>
+    <button type="button" data-filter="rooms" aria-pressed="false">Rooms</button>
+    <button type="button" data-filter="flats" aria-pressed="false">Flats &amp; kitchens</button>
+    <button type="button" data-filter="outside" aria-pressed="false">House &amp; garden</button>
+  </div>
+
+  <section class="masonry" aria-labelledby="page-title">
+    {photos.map((p, i) => (
+      <figure data-cat={p.cat} data-reveal>
+        <button type="button" data-full={`/img/${p.file}`} aria-label={`Enlarge: ${p.cap}`}>
+          <img src={`/img/thumb/${p.file}`} width={p.w} height={p.h} loading={i < 6 ? undefined : 'lazy'} alt={p.cap} />
+        </button>
+        <figcaption>{p.cap}</figcaption>
+      </figure>
+    ))}
+  </section>
+
+  <dialog class="lightbox" aria-label="Photograph">
+    <div class="lightbox__bar"><span class="lightbox__cap"></span><button type="button" data-close>Close</button></div>
+    <div class="lightbox__img"><img src="" alt=""></div>
+    <div class="lightbox__nav"><button type="button" data-prev>Previous</button><button type="button" data-next>Next</button></div>
+  </dialog>
+</Base>

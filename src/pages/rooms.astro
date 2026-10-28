@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import WaIcon from '../components/WaIcon.astro';
+import { rooms, wa } from '../data/site.js';
+---
+<Base
+  title="Rooms & facilities | Kayal Breeze Homestay, Varapuzha"
+  description="Suite rooms, deluxe rooms and 2BHK/3BHK flats at Kayal Breeze, Varapuzha, Kochi. AC and non-AC, daily or monthly. See what each includes."
+  image="/img/suite-bedroom.jpg"
+>
+  <PageHero
+    title="Rooms & facilities"
+    lead="Four ways to stay, by the night or by the month. Rates and availability are confirmed with you on WhatsApp or by phone."
+    images={[{ src: '/img/suite-bedroom.jpg', w: 1500, h: 1000, alt: 'Suite bedroom with a white bed, teak headboard, cove-lit ceiling and a lit dressing mirror' }]}
+    facts={[
+      { value: '2 rooms', label: 'Suite and deluxe' },
+      { value: '2 flats', label: '2BHK and 3BHK, with kitchens' },
+      { value: 'AC or non-AC', label: 'Daily or monthly' },
+    ]}
+  >
+    <a class="btn" href={wa()} target="_blank" rel="noopener"><WaIcon /> Ask for a rate</a>
+  </PageHero>
+
+  <nav class="jump on-green" aria-labelledby="jump-title">
+    <h2 id="jump-title">Go to</h2>
+    <ul>
+      {rooms.map((r) => <li><a href={`#${r.id}`}>{r.name}</a></li>)}
+      <li><a href="#facilities">Facilities</a></li>
+    </ul>
+  </nav>
+
+  {rooms.map((r, i) => (
+    <article id={r.id} class:list={['room grid wrap', { 'room--flip tone': i % 2 === 1 }]} aria-labelledby={`r-${r.id}`}>
+      <div class="room__media" data-reveal>
+        {r.images.map((img, j) => <img src={img.src} width={img.w} height={img.h} loading={i === 0 && j === 0 ? undefined : 'lazy'} alt={img.alt} />)}
+      </div>
+      <div class="room__body" data-reveal>
+        <h2 id={`r-${r.id}`}>{r.name}</h2>
+        <p class="room__tags">{r.tags}</p>
+        <p>{r.text}</p>
+        <ul class="ticks">{r.features.map((f) => <li>{f}</li>)}</ul>
+        <a class="btn" href={r.enquire}>{r.cta}</a>
+      </div>
+    </article>
+  ))}
+
+  <section id="facilities" class="amenities on-green" aria-labelledby="amen-title">
+    <h2 id="amen-title" data-reveal>Facilities</h2>
+    <div class="grid amenities__grid">
+      <div class="amenities__group" data-reveal>
+        <h3>In the rooms</h3>
+        <ul>
+          <li>Air-conditioning in AC rooms</li>
+          <li>Ceiling fans</li>
+          <li>Wall-mounted TV</li>
+          <li>Wardrobe and dressing mirror</li>
+          <li>Fresh white linen and comforters</li>
+        </ul>
+      </div>
+      <div class="amenities__group" data-reveal>
+        <h3>In the flats</h3>
+        <ul>
+          <li>Fitted kitchen with granite counter</li>
+          <li>Two-burner gas stove</li>
+          <li>Refrigerator</li>
+          <li>Dining table and chairs</li>
+          <li>Leather bench seating</li>
+        </ul>
+      </div>
+      <div class="amenities__group" data-reveal>
+        <h3>Around the house</h3>
+        <ul>
+          <li>Garden with a water wall and Buddha</li>
+          <li>Ramp with handrail at the entrance</li>
+          <li>Exterior lighting and CCTV</li>
+          <li>No smoking indoors</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note soft">Availability and pricing are confirmed manually. Send an enquiry and we will reply on WhatsApp or by phone.</p>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-title">
+    <img src="/img/buddha-water-wall.jpg" width="1600" height="900" loading="lazy" alt="The lit Buddha before the garden water wall at night">
+    <div class="cta__body" data-reveal>
+      <h2 id="cta-title">Ask for your dates</h2>
+      <p>Send the dates, the number of guests and the room you would like. We reply with availability and the rate.</p>
+      <div class="ph__actions">
+        <a class="btn" href="/contact.html">Send a room enquiry</a>
+        <a class="btn btn--light" href={wa()} target="_blank" rel="noopener"><WaIcon /> WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Base>

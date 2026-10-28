@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { contact, nearby } from '../data/site.js';
+const directions = `https://www.google.com/maps/dir/?api=1&destination=${contact.lat},${contact.lng}`;
+---
+<Base
+  title="Location | Kayal Breeze Homestay, near Varapuzha Post Office"
+  description="Kayal Breeze is near Varapuzha Post Office, Varapuzha P.O., Kochi, Kerala 683517. Map, directions and distances to the airport, railway station and Kadamakudy."
+  image="/img/facade-day.jpg"
+>
+  <PageHero
+    title="Near Varapuzha Post Office"
+    lead="On the northern edge of Kochi, between the city and the Kadamakudy islands. Look for the white house that glows after dark."
+    images={[
+      { src: '/img/facade-day.jpg', w: 896, h: 1108, alt: 'Kayal Breeze by day among coconut palms', pos: 'center 20%' },
+      { src: '/img/facade-night.jpg', w: 896, h: 1071, alt: 'Kayal Breeze at night with downlights under every eave', pos: 'center 20%' },
+    ]}
+    facts={[
+      { value: '5 km', label: 'Kadamakudy islands' },
+      { value: '17 km', label: 'Ernakulam Junction' },
+      { value: '25 km', label: 'Cochin Airport' },
+    ]}
+  >
+    <a class="btn" href={directions} target="_blank" rel="noopener">Get directions</a>
+  </PageHero>
+
+  <section class="section wrap" aria-labelledby="map-title">
+    <div class="grid">
+      <div class="map" data-reveal>
+        <iframe title="Map showing Kayal Breeze near Varapuzha Post Office" src={`https://maps.google.com/maps?q=${contact.lat},${contact.lng}&z=15&output=embed`} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+      <div class="map-side" data-reveal>
+        <h2 id="map-title">Address</h2>
+        <address>Kayal Breeze, SK Homes<br>Near Varapuzha Post Office<br>Varapuzha P.O., Kochi<br>Kerala 683517</address>
+        <a class="btn" href={directions} target="_blank" rel="noopener">Open in Google Maps</a>
+        <img src="/img/thumb/buddha-water-wall.jpg" width="900" height="506" loading="lazy" alt="The lit Buddha before the garden water wall">
+        <p class="small soft">Lost on the way? Call <a class="link link--on" href={contact.phoneHref}>{contact.phone}</a> and we will guide you in.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="nearby wrap grid tone" aria-labelledby="near-title">
+    <div class="nearby__head" data-reveal>
+      <h2 id="near-title">Nearby</h2>
+      <p>The backwater villages are minutes away; the city, the station and the airport are an easy drive.</p>
+      <img src="/img/thumb/garden-path.jpg" width="900" height="508" loading="lazy" alt="The garden path to the water wall at night">
+    </div>
+    <ul class="nearby__list" data-reveal>
+      {nearby.map((n) => <li><strong>{n.place}</strong><span>{n.dist}</span><em>{n.note}</em></li>)}
+    </ul>
+    <p class="small soft">Distances are approximate, by road.</p>
+  </section>
+
+  <section class="lookfor section wrap" aria-labelledby="look-title">
+    <div class="split-head" data-reveal>
+      <h2 id="look-title">What to look for</h2>
+      <p>A white three-storey house with black balcony railings and a glass canopy over the door. After dark, every eave is lit.</p>
+    </div>
+    <div class="lookfor__row" data-reveal>
+      <figure><img src="/img/facade-day.jpg" width="896" height="1108" loading="lazy" alt="Kayal Breeze by day among coconut palms"><figcaption>By day</figcaption></figure>
+      <figure><img src="/img/facade-night.jpg" width="896" height="1071" loading="lazy" alt="Kayal Breeze at night with downlights under every eave"><figcaption>After dark</figcaption></figure>
+    </div>
+  </section>
+</Base>

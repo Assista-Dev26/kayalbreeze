@@ -1,0 +1,36 @@
+---
+// Full-bleed photographic hero for the inner pages: one, two or three
+// photographs side by side, the title along the bottom, facts at the right.
+interface Img { src: string; w: number; h: number; alt: string; pos?: string }
+interface Props {
+  title: string;
+  lead: string;
+  images: Img[];
+  facts?: { value: string; label: string }[];
+  size?: 'tall' | 'short';
+}
+const { title, lead, images, facts = [], size = 'tall' } = Astro.props;
+---
+<section class:list={['ph', `ph--${size}`, `ph--n${images.length}`]} aria-labelledby="page-title">
+  <div class="ph__media">
+    {images.map((img, i) => (
+      <div class="ph__pane shutter" data-now style={`--d:${i * 140}ms`}>
+        <div class="ph__drift">
+          <img src={img.src} width={img.w} height={img.h} alt={img.alt} style={img.pos ? `object-position:${img.pos}` : undefined} fetchpriority={i === 0 ? 'high' : undefined} />
+        </div>
+      </div>
+    ))}
+  </div>
+  <div class="ph__body">
+    <div class="ph__main">
+      <h1 id="page-title">{title}</h1>
+      <p class="ph__lead">{lead}</p>
+      {Astro.slots.has('default') && <div class="ph__actions"><slot /></div>}
+    </div>
+    {facts.length > 0 && (
+      <dl class="ph__facts">
+        {facts.map((f) => <div><dt>{f.label}</dt><dd>{f.value}</dd></div>)}
+      </dl>
+    )}
+  </div>
+</section>

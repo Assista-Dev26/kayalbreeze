@@ -1,0 +1,114 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import WaIcon from '../components/WaIcon.astro';
+import { contact, wa, waBase } from '../data/site.js';
+const opts = (n) => Array.from({ length: n }, (_, i) => String(i + 1));
+---
+<Base
+  title="Room enquiry | Kayal Breeze Homestay, Varapuzha"
+  description="Send a room enquiry to Kayal Breeze, Varapuzha, Kochi. We reply on WhatsApp or by phone with availability and the rate."
+  image="/img/deluxe-room-panelled.jpg"
+>
+  <PageHero
+    size="short"
+    title="Room enquiry"
+    lead="Tell us your dates and who is coming. We will reply on WhatsApp or by phone with availability and the rate."
+    images={[{ src: '/img/deluxe-room-panelled.jpg', w: 1600, h: 900, alt: 'Deluxe room with a walnut bed, zebra blinds and white flowers on the bedside tables' }]}
+    facts={[
+      { value: contact.phone, label: 'Phone' },
+      { value: contact.whatsapp, label: 'Phone & WhatsApp' },
+    ]}
+  >
+    <a class="btn" href="#enquiry-form">Fill in the form</a>
+    <a class="link link--on" href={wa()} target="_blank" rel="noopener">Or message on WhatsApp</a>
+  </PageHero>
+
+  <section class="enquiry grid wrap" aria-label="Enquiry form and contact details">
+    <div class="form-wrap" data-reveal>
+      <h2>Kayal Breeze Homestay — Room Enquiry Form</h2>
+      <p>Fill in the details below and press Send enquiry. Your enquiry is emailed to us and WhatsApp opens with the same message ready to send.</p>
+
+      <form class="form" id="enquiry-form" action={waBase} method="get" target="_blank" novalidate>
+        <div class="field field--full">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required maxlength="80" aria-describedby="name-err">
+          <span class="err" id="name-err" aria-live="polite"></span>
+        </div>
+        <div class="field field--full">
+          <label for="phone">Mobile / WhatsApp number</label>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="+91 98473 92283" aria-describedby="phone-err">
+          <span class="err" id="phone-err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="checkin">Check-in date</label>
+          <input id="checkin" name="checkin" type="date" required aria-describedby="checkin-err">
+          <span class="err" id="checkin-err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="checkout">Check-out date</label>
+          <input id="checkout" name="checkout" type="date" required aria-describedby="checkout-err">
+          <span class="err" id="checkout-err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="guests">Number of guests</label>
+          <select id="guests" name="guests" required aria-describedby="guests-err"><option value="">Choose</option>{opts(5).map((o) => <option>{o}</option>)}<option>6 or more</option></select>
+          <span class="err" id="guests-err" aria-live="polite"></span>
+        </div>
+        <div class="field">
+          <label for="rooms">Number of rooms</label>
+          <select id="rooms" name="rooms" required aria-describedby="rooms-err"><option value="">Choose</option>{opts(6).map((o) => <option>{o}</option>)}</select>
+          <span class="err" id="rooms-err" aria-live="polite"></span>
+        </div>
+        <div class="field field--full">
+          <label for="room_type">Preferred room type</label>
+          <select id="room_type" name="room_type" required aria-describedby="room_type-err"><option value="">Choose</option><option>AC Room</option><option>Non-AC Room</option><option>Any Available Room</option></select>
+          <span class="err" id="room_type-err" aria-live="polite"></span>
+        </div>
+        <div class="field field--full">
+          <label for="notes">Additional requirements <span class="opt">(optional)</span></label>
+          <textarea id="notes" name="notes" maxlength="1000"></textarea>
+        </div>
+        <div class="form__actions">
+          <button class="btn" type="submit"><WaIcon /> Send enquiry</button>
+          <a class="link link--on" href={contact.phoneHref}>Or call {contact.phone}</a>
+        </div>
+        <p class="form__disclaimer">Submitting an enquiry does not confirm a booking.</p>
+      </form>
+
+      <div class="done" id="sent">
+        <h2 tabindex="-1">Enquiry sent</h2>
+        <p>Your enquiry has gone to us by email, and WhatsApp has opened with the same message. Press send in WhatsApp too, and we will reply with availability and the rate.</p>
+        <p class="done__mail" id="mail-status" role="status" aria-live="polite">Sending the email…</p>
+        <div class="ph__actions">
+          <a class="btn" data-wa href={wa()} target="_blank" rel="noopener"><WaIcon /> Open WhatsApp</a>
+          <button class="link link--on done__edit" type="button" id="edit-enquiry">Change the details</button>
+        </div>
+        <p class="small soft">Submitting an enquiry does not confirm a booking.</p>
+      </div>
+    </div>
+
+    <aside class="contact-side" aria-labelledby="direct-title" data-reveal>
+      <h2 id="direct-title">Or reach us directly</h2>
+      <dl>
+        <div><dt>Phone</dt><dd><a class="link" href={contact.phoneHref}>{contact.phone}</a></dd></div>
+        <div><dt>Phone &amp; WhatsApp</dt><dd><a class="link" href={contact.whatsappTel}>{contact.whatsapp}</a></dd></div>
+        <div><dt>Email</dt><dd><a class="link" href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>
+        <div><dt>Address</dt><dd>SK Homes, near Varapuzha Post Office, Varapuzha P.O., Kochi, Kerala 683517</dd></div>
+      </dl>
+      <img src="/img/thumb/suite-room-day.jpg" width="900" height="1600" loading="lazy" alt="Suite bedroom by day with a floral bedspread, teak headboard and a marble-look floor">
+    </aside>
+  </section>
+
+  <section class="strip wrap" aria-labelledby="strip-title">
+    <div class="split-head" data-reveal>
+      <h2 id="strip-title">Before you choose</h2>
+      <p>A look at the suite, a deluxe room and a flat kitchen. <a class="link link--on" href="/gallery.html">All photographs</a></p>
+    </div>
+    <div class="strip__row" data-reveal>
+      <img src="/img/thumb/suite-bedroom.jpg" width="900" height="600" loading="lazy" alt="Suite bedroom with a lit dressing mirror and teak desk">
+      <img src="/img/thumb/deluxe-room-leaf.jpg" width="900" height="506" loading="lazy" alt="Deluxe room with a lit dressing unit">
+      <img src="/img/thumb/flat-kitchenette.jpg" width="900" height="1350" loading="lazy" alt="Flat kitchenette with a granite counter under a slatted wood ceiling">
+    </div>
+  </section>
+</Base>
