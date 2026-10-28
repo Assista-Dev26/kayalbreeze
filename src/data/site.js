@@ -3,18 +3,18 @@
 export const contact = {
   phone: '+91 98473 12283',
   phoneHref: 'tel:+919847312283',
-  whatsapp: '+91 80866 22243',
-  whatsappTel: 'tel:+918086622243',
+  whatsapp: '+91 98473 92283',
+  whatsappTel: 'tel:+919847392283',
   email: 'kayalbreeze2026@gmail.com',
   addressLines: ['SK Homes, near Varapuzha Post Office', 'Varapuzha P.O., Kochi', 'Kerala 683517'],
   lat: 10.0712776,
   lng: 76.2713165,
 };
 
-// Enquiries are emailed here through formsubmit.co (testing address).
-export const enquiryEmail = 'farisabdulrahman33@gmail.com';
+// Enquiries are emailed here through formsubmit.co.
+export const enquiryEmail = 'kayalbreeze2026@gmail.com';
 
-export const waBase = 'https://wa.me/918086622243';
+export const waBase = 'https://wa.me/919847392283';
 
 export const wa = (text = "Hello Kayal Breeze, I'd like to enquire about a room.") =>
   `${waBase}?text=${encodeURIComponent(text)}`;

@@ -1,0 +1,25 @@
+# Netlify: build the Astro site and serve dist/.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Keep the original, uncompressed photographs private (replaces the .htaccess rule).
+[[redirects]]
+  from = "/img/src/*"
+  to = "/404"
+  status = 404
+  force = true
+
+# Cache photographs for a month; Astro's hashed styles and scripts never change, so for a year.
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

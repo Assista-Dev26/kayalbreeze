@@ -28,7 +28,7 @@ function respond(bool $ok, string $message = '', array $errors = []): void {
        . '<body style="font:18px/1.5 system-ui,sans-serif;max-width:40rem;margin:4rem auto;padding:0 1rem">'
        . '<h1>Your enquiry was not sent</h1><ul>' . $list . '</ul>'
        . '<p><a href="contact.html">Go back to the form</a> or message us on '
-       . '<a href="https://wa.me/918086622243">WhatsApp</a>.</p></body>';
+       . '<a href="https://wa.me/919847392283">WhatsApp</a>.</p></body>';
     exit;
 }
 
@@ -108,7 +108,7 @@ $headers = "From: Kayal Breeze Website <$from>\r\n"
          . "X-Mailer: PHP/" . PHP_VERSION;
 
 if (!@mail(TO_EMAIL, $subject, $body, $headers, '-f' . $from)) {
-    respond(false, 'We could not send your enquiry just now. Please message us on WhatsApp: +91 80866 22243.');
+    respond(false, 'We could not send your enquiry just now. Please message us on WhatsApp: +91 98473 92283.');
 }
 
 $hits[] = time();
